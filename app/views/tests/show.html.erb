@@ -1,0 +1,12 @@
+<h2>Order number <%= @session.id %> for Table <%= @session.table.number %></h2>
+
+<ul>
+  <% @session.distinct_items.each do |item| %>
+    <% items_count = @session.items_count %>
+    <li>
+      <% quantity = items_count[item.name] %>
+      <p> <%= @session.updated_at.strftime('%D -%r') %> | <%= quantity %>x <%= item.name %> </p>
+    </li>
+  <% end %>
+
+</ul>

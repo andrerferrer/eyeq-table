@@ -4,6 +4,9 @@ class Session < ApplicationRecord
   has_many :session_items, dependent: :destroy
   has_many :items, through: :session_items
 
+  def distinct_items
+    items.distinct
+  end
 
   def bill_total
     sum = 0
@@ -21,5 +24,17 @@ class Session < ApplicationRecord
     end
 
     sum.round(2)
+  end
+
+  def items_count(selected_items = items)
+    selected_items.group(:name).count
+  end
+
+  def items_sent_to_kitchen
+    items.where(session_items: { sent_to_kitchen: true })
+  end
+
+  def items_served_to_table
+    items.where(session_items: { served_to_table: true })
   end
 end
