@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'tests/show'
   # For details on the DSL a vailable within this file, see https://guides.rubyonrails.org/routing.html
   devise_for :restaurants
 
